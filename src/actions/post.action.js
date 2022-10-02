@@ -49,3 +49,18 @@ export const deletePost = (postId) => {
             .catch((err) => console.log(err));
     }
 }
+
+export const ADD_LIKES = 'ADD_LIKES';
+export const addLike = (data) => {
+    return (dispatch) => {
+        return axios({
+            method: 'put',
+            url: `http://localhost:3000/posts/${data.id}`,
+            data: { ...data }
+        })
+            .then((res) => {
+                dispatch({ type: ADD_LIKES, payload: { ...data } })
+            })
+            .catch((err) => console.log(err));
+    }
+}

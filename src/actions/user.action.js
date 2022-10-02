@@ -9,3 +9,18 @@ export const getUsers = () => {
             .catch((err) => console.log(err));
     }
 }
+
+export const ADD_USER_LIKES = 'ADD_USER_LIKES';
+export const addUserLikes = (data) => {
+    return (dispatch) => {
+        return axios({
+            method: 'put',
+            url: `http://localhost:3000/users/${data.id}`,
+            data: { ...data }
+        })
+            .then((res) => {
+                dispatch({ type: ADD_USER_LIKES, payload: { ...data } })
+            })
+            .catch((err) => console.log(err));
+    }
+}
